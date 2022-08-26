@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 public class BankingApp {
 
-
     private static ArrayList<Account> accounts = new ArrayList<Account>();
     private static final double INTEREST_RATE = 0.1;
 
@@ -14,7 +13,9 @@ public class BankingApp {
 
         BankingApp bankingApp = new BankingApp();
         bankingApp.mainUI();
+
     }
+
     public void mainUI(){
         /* This is the main UI */
 
@@ -31,17 +32,15 @@ public class BankingApp {
             System.out.println("Press 3 to  Exit");
 
             System.out.print("\nPlease enter your choice : ");
-            int enterChoice = scanner.nextInt();
+            int choice = scanner.nextInt();
 
-            if(enterChoice == 1){
+            if(choice == 1){
+                this.loggingUI(scanner);
 
-
-                // TODO check acc no
-
-            } else if (enterChoice == 2) {
+            } else if (choice == 2) {
                 this.createYourAccountUI(scanner);
 
-            } else if (enterChoice == 3) {
+            } else if (choice == 3) {
                 System.exit(0);
             }else {
                 System.out.println("\nYour enter wrong input.Please enter correct choice\n");
@@ -75,20 +74,26 @@ public class BankingApp {
     public void loggingUI(Scanner scanner){
         /*Logging to Account*/
 
-        Account newLoggingAccount = new Account();
+        System.out.print("\n Enter your account number : ");
+        int accountNumber = scanner.nextInt();
 
-        while (true){
-            System.out.print("\n Enter your account number : ");
-            int accountNumber = scanner.nextInt();
-            System.out.print("Enter Your Name : ");
-            String accountHoldersName = scanner.next();
+        Account account = getAccountByID(accountNumber);
 
-            for (int i=0;i<BankingApp.accounts.size();i++){
-                if(accountNumber == BankingApp.accounts.size()+1){
-                    System.out.println("Well Come "+accountHoldersName+" Your Account Number is "+accountNumber);
-                }
+        if(account==null){
+            System.out.println("Please enter valid account number");
+        }else {
+            System.out.println("Welcome " +account.getAccountName()+". Account number: "+account.getAccountNumber());
+        }
+    }
+
+    public Account getAccountByID(int accountNumber){
+        /*This function use to get account from account number*/
+
+        for (Account account : BankingApp.accounts){
+            if(account.getAccountNumber()==accountNumber){
+                return account;
             }
         }
-
+        return null;
     }
 }
