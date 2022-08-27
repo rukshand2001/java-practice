@@ -69,6 +69,8 @@ public class BankingApp {
         newAccount.setInterestRate(BankingApp.INTEREST_RATE);
 
         BankingApp.accounts.add(newAccount);
+        System.out.println("Your account number is: "+accountNumber);
+
     }
 
     public void loggingUI(Scanner scanner){
@@ -84,6 +86,8 @@ public class BankingApp {
         }else {
             System.out.println("Welcome " +account.getAccountName()+". Account number: "+account.getAccountNumber());
         }
+
+
     }
 
     public Account getAccountByID(int accountNumber){
@@ -95,5 +99,52 @@ public class BankingApp {
             }
         }
         return null;
+    }
+
+    public void accountLoggedUI(int accountNumber,Scanner scanner){
+        /*to do banking works with accounts*/
+
+
+        boolean loggedIn = true;
+
+        while (loggedIn){
+            System.out.println("Press 1 to withdraw money");
+            System.out.println("Press 2 to deposit money");
+            System.out.println("press 3 to get balance");
+            System.out.println("pres 4 to get your account interest");
+            System.out.println("press 5 to do transaction");
+            System.out.println("press 6 to exit");
+
+            System.out.print("Enter your choice: ");
+            int choice =scanner.nextInt();
+            Account accountUINew = new Account();
+
+            switch (choice){
+                case 1:
+                    System.out.print("Enter your withdraw amount: ");
+                    double withdrawAmount = scanner.nextDouble();
+                    break;
+                case 2:
+                    System.out.print("Enter your deposit amount: ");
+                    double depositAmount = scanner.nextDouble();
+                    break;
+                case 3:
+                    //Account accountBalanceAccountNumber = getAccountByID(accountNumber);
+                    //Account accountBalanceCurrentAccount = get
+                    System.out.print("Your current balance is: ");
+                    break;
+                case 4:
+                    System.out.print("Your currently interest is: ");
+                    break;
+                case 5:
+                    System.out.print("Receiver's  account number & amount: ");
+                    break;
+                case 6:
+                    loggedIn = false;
+                    break;
+                default:
+                    System.out.println("You have entered a wrong choice. Please check your choice");
+            }
+        }
     }
 }
