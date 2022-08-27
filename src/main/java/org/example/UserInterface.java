@@ -125,10 +125,10 @@ public class UserInterface {
                     break;
                 case 5:
                     System.out.print("Receiver's  account number & amount: ");
-                    String inputDetails = scanner.next();
-                    String[] transactionDetails = inputDetails.split(" ");
-                    int receiversAccountNumber = Integer.parseInt(transactionDetails[0]);
-                    double amount =Double.parseDouble(transactionDetails[1]);
+                    String receiverAccountNumberStr = scanner.next();
+                    String transactionAmount = scanner.nextLine();
+                    int receiversAccountNumber = Integer.parseInt(receiverAccountNumberStr);
+                    double amount =Double.parseDouble(transactionAmount);
                     this.utils.transaction(userAccount,amount,receiversAccountNumber);
                     break;
                 case 6:
