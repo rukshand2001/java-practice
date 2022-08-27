@@ -71,7 +71,6 @@ public class BankingApp {
         BankingApp.accounts.add(newAccount);
         System.out.println("Your account number is: "+accountNumber);
 
-        this.loggingUI(scanner);
     }
 
     public void loggingUI(Scanner scanner){
@@ -87,6 +86,8 @@ public class BankingApp {
         }else {
             System.out.println("Welcome " +account.getAccountName()+". Account number: "+account.getAccountNumber());
         }
+
+
     }
 
     public Account getAccountByID(int accountNumber){
@@ -100,28 +101,28 @@ public class BankingApp {
         return null;
     }
 
-    public void bankingAppAccountUI(int accountNumber){
+    public void accountLoggedUI(int accountNumber,Scanner scanner){
         /*to do banking works with accounts*/
 
-        Scanner scanner = new Scanner(System.in);
+
         boolean loggedIn = true;
 
         while (loggedIn){
-            System.out.println("Press 1 to withdrawal money");
+            System.out.println("Press 1 to withdraw money");
             System.out.println("Press 2 to deposit money");
             System.out.println("press 3 to get balance");
             System.out.println("pres 4 to get your account interest");
-            System.out.println("press 5 to do transactions");
+            System.out.println("press 5 to do transaction");
             System.out.println("press 6 to exit");
 
-            System.out.print("Enter your choose: ");
-            int choose =scanner.nextInt();
+            System.out.print("Enter your choice: ");
+            int choice =scanner.nextInt();
             Account accountUINew = new Account();
 
-            switch (choose){
+            switch (choice){
                 case 1:
-                    System.out.print("Enter your withdrawal amount: ");
-                    double withdrawalAmount = scanner.nextDouble();
+                    System.out.print("Enter your withdraw amount: ");
+                    double withdrawAmount = scanner.nextDouble();
                     break;
                 case 2:
                     System.out.print("Enter your deposit amount: ");
@@ -142,7 +143,7 @@ public class BankingApp {
                     loggedIn = false;
                     break;
                 default:
-                    System.out.println("Enter valued choose");
+                    System.out.println("You have entered a wrong choice. Please check your choice");
             }
         }
     }
