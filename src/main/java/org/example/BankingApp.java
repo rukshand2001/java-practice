@@ -69,6 +69,9 @@ public class BankingApp {
         newAccount.setInterestRate(BankingApp.INTEREST_RATE);
 
         BankingApp.accounts.add(newAccount);
+        System.out.println("Your account number is: "+accountNumber);
+
+        this.loggingUI(scanner);
     }
 
     public void loggingUI(Scanner scanner){
@@ -95,5 +98,52 @@ public class BankingApp {
             }
         }
         return null;
+    }
+
+    public void bankingAppAccountUI(int accountNumber){
+        /*to do banking works with accounts*/
+
+        Scanner scanner = new Scanner(System.in);
+        boolean loggedIn = true;
+
+        while (loggedIn){
+            System.out.println("Press 1 to withdrawal money");
+            System.out.println("Press 2 to deposit money");
+            System.out.println("press 3 to get balance");
+            System.out.println("pres 4 to get your account interest");
+            System.out.println("press 5 to do transactions");
+            System.out.println("press 6 to exit");
+
+            System.out.print("Enter your choose: ");
+            int choose =scanner.nextInt();
+            Account accountUINew = new Account();
+
+            switch (choose){
+                case 1:
+                    System.out.print("Enter your withdrawal amount: ");
+                    double withdrawalAmount = scanner.nextDouble();
+                    break;
+                case 2:
+                    System.out.print("Enter your deposit amount: ");
+                    double depositAmount = scanner.nextDouble();
+                    break;
+                case 3:
+                    //Account accountBalanceAccountNumber = getAccountByID(accountNumber);
+                    //Account accountBalanceCurrentAccount = get
+                    System.out.print("Your current balance is: ");
+                    break;
+                case 4:
+                    System.out.print("Your currently interest is: ");
+                    break;
+                case 5:
+                    System.out.print("Receiver's  account number & amount: ");
+                    break;
+                case 6:
+                    loggedIn = false;
+                    break;
+                default:
+                    System.out.println("Enter valued choose");
+            }
+        }
     }
 }
