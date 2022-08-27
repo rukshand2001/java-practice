@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class UserInterface {
     Scanner scanner = new Scanner(System.in);
+    Utils utils = new Utils();
 
     public void mainUI(){
         /* This is the main UI */
@@ -67,13 +68,10 @@ public class UserInterface {
     public void loggingUI(){
         /*Logging to Account*/
 
-        Utils utils = new Utils();
-
-
         System.out.print("\n Enter your account number : ");
         int accountNumber = this.scanner.nextInt();
 
-         Account account = utils.getAccountByID(accountNumber);
+         Account account = this.utils.getAccountByID(accountNumber);
 
         if(account==null){
             System.out.println("Please enter valid account number");
@@ -94,6 +92,7 @@ public class UserInterface {
         /*to do banking works with accounts*/
 
         boolean loggedIn = true;
+        Account userAccount = BankingApp.getCurrentAccountUser();
 
         while (loggedIn){
 
@@ -111,19 +110,26 @@ public class UserInterface {
                 case 1:
                     System.out.print("Enter your withdraw amount: ");
                     double withdrawAmount = this.scanner.nextDouble();
+                    this.utils.withdraw(userAccount,withdrawAmount);
                     break;
                 case 2:
                     System.out.print("Enter your deposit amount: ");
                     double depositAmount = this.scanner.nextDouble();
+                    this.utils.deposit(userAccount,depositAmount);
                     break;
                 case 3:
-                    System.out.print("Your current balance is: ");
+                    this.utils.checkBalance(userAccount);
                     break;
                 case 4:
-                    System.out.print("Your currently interest is: ");
+                    this.utils.interestRate(userAccount);
                     break;
                 case 5:
                     System.out.print("Receiver's  account number & amount: ");
+                    String inputDetails = scanner.next();
+                    String[] transactionDetails = inputDetails.split(" ");
+                    int receiversAccountNumber = Integer.parseInt(transactionDetails[0]);
+                    double amount =Double.parseDouble(transactionDetails[1]);
+                    this.utils.transaction(userAccount,amount,receiversAccountNumber);
                     break;
                 case 6:
                     loggedIn = false;
