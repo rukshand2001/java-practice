@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.ArrayList;
+
 public class Utils {
 
     public Account getAccountByID(int accountNumber){
@@ -71,11 +73,34 @@ public class Utils {
                 double receiversAccountBalance = receiverAccount.getAccountBalance()+amount;
                 receiverAccount.setAccountBalance(receiversAccountBalance);
 
+                TransactionHistory transactionHistory = new TransactionHistory();
+
+                transactionHistory.setSender(account);
+                transactionHistory.setAmount(amount);
+                transactionHistory.setreceiver(receiverAccount);
+                BankingApp.addTransactionHistory(transactionHistory);
+
                 System.out.println("Your transaction is successful and your currently account balance is:" +newBalance);
             }
         }else {
             System.out.println("Not sufficient balance for this transaction");
         }
 
+    }
+
+    public void showTransactionHistory(){
+        /*To show transaction history*/
+
+        System.out.println("Your transaction history is:\n");
+
+        ArrayList<TransactionHistory> transactionHistoryList = BankingApp.getTransactionHistory();
+        for (TransactionHistory transactionHistory : transactionHistoryList){
+            String message = transactionHistory.getSender().getAccountName()
+                    +" send "
+                    + transactionHistory.getAmount()
+                    + " to "
+                    + transactionHistory.getReceiver().getAccountName();
+            System.out.println(message );
+        }
     }
 }

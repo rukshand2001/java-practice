@@ -7,10 +7,21 @@ public class BankingApp {
     private static Account currentAccountUser = null;
 
     private static final ArrayList<Account> accounts = new ArrayList<Account>();
+
+    private static final ArrayList<TransactionHistory> transactionHistory = new ArrayList<TransactionHistory>();
+
+    public static ArrayList<TransactionHistory> getTransactionHistory(){
+        return BankingApp.transactionHistory;
+    }
+
+    public static void addTransactionHistory(TransactionHistory transactionHistory){
+        BankingApp.transactionHistory.add(transactionHistory);
+    }
+
     private static final double INTEREST_RATE = 0.1;
 
     public static ArrayList<Account> getAccounts() {
-        return accounts;
+        return BankingApp.accounts;
     }
 
     public static void addAccounts(Account account) {
