@@ -72,7 +72,9 @@ public class Utils {
 
                 double receiversAccountBalance = receiverAccount.getAccountBalance()+amount;
                 receiverAccount.setAccountBalance(receiversAccountBalance);
+
                 TransactionHistory transactionHistory = new TransactionHistory();
+
                 transactionHistory.setSender(account);
                 transactionHistory.setAmount(amount);
                 transactionHistory.setreceiver(receiverAccount);
@@ -87,6 +89,8 @@ public class Utils {
     }
 
     public void showTransactionHistory(){
+        /*To show transaction history*/
+
         System.out.println("Your transaction history is:\n");
         ArrayList<TransactionHistory> transactionHistoryList = BankingApp.getTransactionHistory();
         for (TransactionHistory transactionHistory : transactionHistoryList){
