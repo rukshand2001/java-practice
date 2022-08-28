@@ -10,29 +10,34 @@ public class UserInterface {
     public void mainUI(){
         /* This is the main UI */
 
-        while (true){
+        while (true) {
 
             System.out.println("\n\n***************************************");
             System.out.println("-------BANKING APP-------");
             System.out.println("*****************************************\n\n");
             System.out.println("Press 1 to Logging to App");
             System.out.println("Press 2 to Create Account");
-            System.out.println("Press 3 to  Exit");
+            System.out.println("Press 3 to get transaction history");
+            System.out.println("Press 4 to  Exit");
 
             System.out.print("\nPlease enter your choice : ");
             int choice = this.scanner.nextInt();
 
-            if(choice == 1){
+            if (choice == 1) {
                 this.loggingUI();
 
             } else if (choice == 2) {
                 this.createYourAccountUI();
 
             } else if (choice == 3) {
+                this.utils.showTransactionHistory();
+
+            } else if (choice == 4) {
                 System.exit(0);
-            }else {
-                System.out.println("\nYour enter wrong input.Please enter correct choice\n");
             }
+            else {
+                    System.out.println("\nYour enter wrong input.Please enter correct choice\n");
+                }
         }
     }
 
@@ -124,12 +129,11 @@ public class UserInterface {
                     this.utils.interestRate(userAccount);
                     break;
                 case 5:
-                    System.out.print("Receiver's  account number & amount: ");
-                    String inputDetails = scanner.next();
-                    String[] transactionDetails = inputDetails.split(" ");
-                    int receiversAccountNumber = Integer.parseInt(transactionDetails[0]);
-                    double amount =Double.parseDouble(transactionDetails[1]);
-                    this.utils.transaction(userAccount,amount,receiversAccountNumber);
+                    System.out.print("Enter receiver's  account number: ");
+                    int inputReceiverAccountNumber = scanner.nextInt();
+                    System.out.println("Enter amount: ");
+                    double inputAmount = scanner.nextDouble();
+                    this.utils.transaction(userAccount,inputAmount,inputReceiverAccountNumber);
                     break;
                 case 6:
                     loggedIn = false;
