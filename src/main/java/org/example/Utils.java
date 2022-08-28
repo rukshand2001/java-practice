@@ -92,6 +92,7 @@ public class Utils {
         /*To show transaction history*/
 
         System.out.println("Your transaction history is:\n");
+
         ArrayList<TransactionHistory> transactionHistoryList = BankingApp.getTransactionHistory();
         for (TransactionHistory transactionHistory : transactionHistoryList){
             String message = transactionHistory.getSender().getAccountName()
